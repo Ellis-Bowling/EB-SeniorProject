@@ -1,0 +1,16 @@
+body {
+	background-color: #99AABB;
+	font-size: 15px;
+	line-height: 225%;
+}
+
+h1, h2, h3 {
+	margin: 0;
+}
+
+.ui-group {
+	background-color: #FFFFF8;
+	border: 1ex inset #778899;
+	margin: 1em 0;
+	padding: 1em;
+}

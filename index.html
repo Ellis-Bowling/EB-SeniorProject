@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Ellis Bowling Project</title>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+		<script src="_js/index.js"></script>
+		<link rel="stylesheet" type="text/css" href="_css/index.css" />
+	</head>
+	<body>
+		<h1>Ugly EBP User Interface</h1>
+		<div id="LocationLookupWrapper" class="ui-group">
+			<h2>Step 1: Establish User Location</h2>
+			<input type="text"   id="txtUserAddress" />
+			<input type="button" id="btnResolveAddressToLatLng" value="Resolve Address To Lat/Lng" />
+			<input type="button" id="btnUserGeolocate" value="Geolocate" />
+			<br />
+			<label for="txtLatLng">Lat/Lng:</label>
+			<input type="text" id="txtLatLng" value="" />
+		</div>
+		<div id="LocIdWrapper" class="ui-group">
+			<h2>Step 2: Map LocID to User Location</h2>
+			<label for="txtLocId">LocId:</label>
+			<input type="text" id="txtLocId" value="" />
+			<input type="button" id="btnResolveLatLngToLocId" value="Resolve Lat/Lng To Loc ID" />
+		</div>
+		<div id="RawDsxDataForLocWrapper" class="ui-group">
+			<h2>Step 3: Obtain Raw DSX Data For Loc ID</h2>
+			<input type="button" id="btnObtainRawDsxData" value="Obtain Raw DSX Data For Loc ID" />
+			<div id="RawDsxDataForLoc">
+				raw data goes here
+			</div>
+		</div>
+		<div id="SaturationAnalysisWrapper" class="ui-group">
+			<h2>Step 4: Generate Saturation Analysis</h2>
+			<input type="button" id="btnGenerateSaturationAnalysis" value="Generate Saturation Analysis" />
+			<div id="SaturationAnalysis">
+				saturation analysis goes here
+			</div>
+		</div>
+	</body>
+</html>
