@@ -1,9 +1,8 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Ellis Bowling Project</title>
-		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-		<script src="_js/index.js"></script>
+		<title>EB-SeniorProject</title>
+		<script data-main="_js/main" src="_js/vendor/require-2.1.15.js"></script>
 		<link rel="stylesheet" type="text/css" href="_css/index.css" />
 	</head>
 	<body>
@@ -37,5 +36,19 @@
 				saturation analysis goes here
 			</div>
 		</div>
+		<script>
+		var x = document.getElementById("demo");
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(showPosition);
+		    } else {
+		        x.innerHTML = "Geolocation is not supported by this browser.";
+		    }
+		}
+		function showPosition(position) {
+		    x.innerHTML = "Latitude: " + position.coords.latitude + 
+		    "<br>Longitude: " + position.coords.longitude; 
+		}
+		</script>
 	</body>
 </html>
