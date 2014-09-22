@@ -16,31 +16,34 @@ require.config({
 
 
 // Load modules and use them...
-require(['app-config', 'ui/actions', 'ui/view', 'dsx/requests', 'dsx/responses', 'app-init'],
+require(['app/config', 'ui/actions', 'ui/view', 'dsx/requests', 'dsx/responses', 'app/init'],
 function(appConfig, uiActions, uiView, dsxRequests, dsxResponses, appInit) {
 	// constructor for EBSP app...
 	var EBSP = function() {
+		var me = this;
 
 		// app config (settings variables)...
-		this.config = new appConfig();
+		me.config = appConfig;
 
 		// app ui functionality...
-		this.ui = {
-			actions: new uiActions(),
-			view: new uiView()
+		me.ui = {
+			actions: uiActions(me),
+			view:    uiView(me)
 		};
 
 		// app dsx support functionality...
-		this.dsx = .dsx = {
-			requests: new dsxRequests(),
-			responses: new dsxResponses()
+		me.dsx = {
+			requests:  dsxRequests(me),
+			responses: dsxResponses(me)
 		};
 
 		// app initializer...
-		this.init = new appInit();
+		me.init = appInit(me);
 
 	};
 
-	// launch application...
-	(new EBSP()).init();
+	// place application into global (window)
+	// namespace, and launch application
+	window.EBSP = new EBSP();
+	window.EBSP.init();
 });
