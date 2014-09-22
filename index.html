@@ -10,8 +10,9 @@
 		<div id="LocationLookupWrapper" class="ui-group">
 			<h2>Step 1: Establish User Location</h2>
 			<input type="text"   id="txtUserAddress" />
+			<br />
 			<input type="button" id="btnResolveAddressToLatLng" value="Resolve Address To Lat/Lng" />
-			<input type="button" id="btnUserGeolocate" value="Geolocate" />
+			<input type="button" id="btnUserGeolocate" value="Geolocate Me" />
 			<br />
 			<label for="txtLatLng">Lat/Lng:</label>
 			<input type="text" id="txtLatLng" value="" />
@@ -25,30 +26,16 @@
 		<div id="RawDsxDataForLocWrapper" class="ui-group">
 			<h2>Step 3: Obtain Raw DSX Data For Loc ID</h2>
 			<input type="button" id="btnObtainRawDsxData" value="Obtain Raw DSX Data For Loc ID" />
-			<div id="RawDsxDataForLoc">
+			<div id="divRawDsxDataForLoc">
 				raw data goes here
 			</div>
 		</div>
 		<div id="SaturationAnalysisWrapper" class="ui-group">
 			<h2>Step 4: Generate Saturation Analysis</h2>
 			<input type="button" id="btnGenerateSaturationAnalysis" value="Generate Saturation Analysis" />
-			<div id="SaturationAnalysis">
+			<div id="divSaturationAnalysis">
 				saturation analysis goes here
 			</div>
 		</div>
-		<script>
-		var x = document.getElementById("demo");
-		function getLocation() {
-		    if (navigator.geolocation) {
-		        navigator.geolocation.getCurrentPosition(showPosition);
-		    } else {
-		        x.innerHTML = "Geolocation is not supported by this browser.";
-		    }
-		}
-		function showPosition(position) {
-		    x.innerHTML = "Latitude: " + position.coords.latitude + 
-		    "<br>Longitude: " + position.coords.longitude; 
-		}
-		</script>
 	</body>
 </html>

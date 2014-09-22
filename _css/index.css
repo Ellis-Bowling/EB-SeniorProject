@@ -14,3 +14,11 @@ h1, h2, h3 {
 	margin: 1em 0;
 	padding: 1em;
 }
+
+#txtUserAddress {
+	width: 50em;
+}
+
+#LocationLookupWrapper input[type="button"] {
+	width: 20em;
+}
