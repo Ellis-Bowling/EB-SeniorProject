@@ -27,8 +27,9 @@
 			EBSP.dsx.requests.executeDsxRequest(requestPath, {}, successFunction, errorFunction);
 		},
 
-		getDsxAlmanacData: function() {
-			console.log('getDsxAlmanacData() on ', EBSP);
+		getDsxAlmanacData: function(locId, successFunction, errorFunction) {
+			var requestPath = '/wxd/v2/FarmingAlmanac/0/(' + locId + ')'
+			EBSP.dsx.requests.executeDsxRequest(requestPath, successFunction, errorFunction);
 		},
 
 		getDsxPrecipData: function() {

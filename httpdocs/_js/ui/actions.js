@@ -1,8 +1,49 @@
 (function(EBSP, $, _) {
-	var showLocation, 
+	var showLocation,
+		  formatAlmanacData,
 			geocoder,
 			currentLat,
-			currentLng;
+			currentLng,
+			currentLocId;
+	
+	
+	// function formatAlmanacData(almanacData)
+	formatAlmanacData = function(almanacData) {
+		console.log(almanacData);
+		var retStr = '';
+		var fieldGroups = [
+			{
+				'name': 'HistoricalMonthlyAvg',
+				'fields': [
+					'currentMonthAvgPrecipIn',
+					'nextMonthAvgPrecipIn',
+					'monthAfterNextAvgPrecipIn'
+				]
+			},
+			{
+				'name': 'ReportedConditions',
+				'fields': [
+					'mtdPrecipIn',
+					'prevDayPrecipIn',
+					'sevenDayPrecipIn'
+				]
+			}
+		];
+		
+		for(var i = 0; i < fieldGroups.length; i++) {
+			retStr += '<strong>'; 
+			retStr += fieldGroups[i].name;
+			retStr += '</strong><br />';
+			
+			for(var j = 0; j < fieldGroups[i].fields.length; j++) {
+				retStr += '&nbsp;- ' + fieldGroups[i].fields[j] + ': ';
+				retStr += almanacData[fieldGroups[i].name][fieldGroups[i].fields[j]] + '<br />'
+			}
+			
+		}
+		
+		return retStr + 'the end!';
+	};
 	
 
 	// function showAndStoreLatLng(position)
@@ -73,9 +114,9 @@
 		doResolveLatLngToLocId: function() {
 			console.log('doResolveLatLngToLocId() on ', EBSP);
 
-			var locId = null;
-
 			var gotLocIdSuccess = function(data, textStatus) {
+				var locId = '';
+				
 				if(data && data.body && data.body[0] && data.body[0].doc && data.body[0].doc.locId) {
 					locId = data.body[0].doc.locId + ':1:US';
 				} else {
@@ -83,6 +124,7 @@
 				}
 
 				EBSP.ui.view.txtLocId.val(locId);
+				currentLocId = locId;
 			};
 
 			var gotLocIdFailure = function(jqxhr, textStatus, errorThrown) {
@@ -96,7 +138,27 @@
 		// function doObtainRawDsxDataForLocId()
 		doObtainRawDsxDataForLocId: function() {
 			console.log('doObtainRawDsxDataForLocId() on ', EBSP);
-		},
+			
+			var gotAlmanacDataSuccess = function(data, textStatus) {
+				var almanacData = '';
+				if(data && data.body && data.body[0] && data.body[0].doc && data.body[0].doc.FarmingAlmanacRecordData) {
+					almanacData = data.body[0].doc.FarmingAlmanacRecordData;
+				} else {
+					alert('Failure! Contacted DSX, but response received was in wrong format to represent Almanac data')
+				}
+				EBSP.ui.view.divRawDsxDataForLoc.html(formatAlmanacData(almanacData));
+				
+			};
+			
+			var gotAlmanacDataFailure = function(jqxhr, textStatus, errorThrown) {
+				alert('Failure, Could not contact dsx to obtain Almanac data')
+			
+			};
+
+			
+			EBSP.dsx.requests.getDsxAlmanacData(currentLocId, gotAlmanacDataSuccess, gotAlmanacDataSuccess);
+			
+		}, 
 
 
 		// function doGenerateSaturationAnalysis()
