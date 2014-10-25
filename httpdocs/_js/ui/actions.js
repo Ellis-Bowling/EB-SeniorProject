@@ -1,7 +1,15 @@
 (function(EBSP, $, _) {
 	var displayLatLng,
-	    showGeolocationError;
+	    showGeolocationError,
+	    instGeocoder = null;
 
+	/**
+	 * function displayLatLng(position)
+	 *
+	 * This is the callback function which is executed
+	 * to display the lat/lng position when determined
+	 * by geocoding or geolocation.
+	 */
 	displayLatLng = function(position) {
 		console.log('displayLatLng: ', position);
 
@@ -48,6 +56,27 @@
 
 		doResolveAddressToLatLng: function() {
 			console.log('doResolveAddressToLatLng() on ', EBSP);
+
+			var theAddress = EBSP.ui.view.txtUserAddress.val();
+
+			if(instGeocoder === null) {
+				instGeocoder = new google.maps.Geocoder();
+				console.log('initialized instGeocoder: ', instGeocoder);
+			}
+
+			instGeocoder.geocode({'address': theAddress}, function(results, status) {
+				var position = {
+					coords: {}
+				};
+
+				if (status == google.maps.GeocoderStatus.OK) {
+					position.coords.latitude  = results[0].geometry.location.lat();
+					position.coords.longitude = results[0].geometry.location.lng();
+					displayLatLng(position);
+				} else {
+					alert('Geocode failed for the following reasons:\n' + status);
+				}
+			});
 		},
 
 		doResolveLatLngToLocId: function() {
