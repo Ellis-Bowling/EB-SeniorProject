@@ -23,6 +23,8 @@
 		EBSP.ui.view.btnResolveLatLngToLocId.click(EBSP.ui.actions.doResolveLatLngToLocId);
 		EBSP.ui.view.btnObtainRawDsxData.click(EBSP.ui.actions.doObtainRawDsxDataForLocId);
 		EBSP.ui.view.btnGenerateSaturationAnalysis.click(EBSP.ui.actions.doGenerateSaturationAnalysis);
+
+		console.log(EBSP.ui.view);
 	});
 	
 	console.log(EBSP.ui.view);
