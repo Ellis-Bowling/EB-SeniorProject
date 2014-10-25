@@ -1,0 +1,11 @@
+OVERVIEW
+--------
+
+Topics to Address:
+
+1. Geocoding from Address to Lat/Lng (Google Maps)
+2. HTML Geolocation API to Lat/Lng
+3. Resolving Lat/Lng to a Weather.com LocID
+4. Requesting DSX Data for LocID
+5. Display Data To User (User Interface Design)
+
