@@ -22,3 +22,7 @@ h1, h2, h3 {
 #LocationLookupWrapper input[type="button"] {
 	width: 20em;
 }
+
+#txtLatLng {
+	width: 50em;
+}

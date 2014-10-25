@@ -5,4 +5,4 @@
 // 4. http://localhost/somefile.html
 var connect = require('connect');
 var serveStatic = require('serve-static');
-connect().use(serveStatic('/Users/EllisBowling/Projects/EB-SeniorProject/_repo/EB-SeniorProject/httpdocs/')).listen(8080);
+connect().use(serveStatic('~/Desktop/SeniorProject/_repo/EB-SeniorProject/httpdocs/')).listen(8080);
